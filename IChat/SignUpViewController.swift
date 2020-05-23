@@ -21,6 +21,8 @@ class SignUpViewController: UIViewController {
     let passwordTextField = OneLineTextField(font: .avenir20())
     let confirmPasswordTextField = OneLineTextField(font: .avenir20())
     
+    let authService = AuthService()
+    
     let signUpButton = UIButton(title: "Sign Up", titleColor: .white, backgroundColor: .buttonDark(), cornerRadius: 4)
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
@@ -41,7 +43,18 @@ class SignUpViewController: UIViewController {
     }
     
     @objc private func signUpButtonTapped() {
-        
+        AuthService.shared.register(email: emailTextField.text,
+                                    password: passwordTextField.text,
+                                    confirmPassword: confirmPasswordTextField.text) { (result) in
+                                        switch result {
+                                        case .success:
+                                            self.showAlert(with: "Успешно!", and: "Вы зарегистрированны!") {
+                                                self.present(SetupProfileViewController(), animated: true, completion: nil)
+                                            }
+                                        case .failure(let error):
+                                            self.showAlert(with: "Ошибка!", and: error.localizedDescription)
+                                        }
+        }
     }
     
     @objc private func loginButtonTapped() {

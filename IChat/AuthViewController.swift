@@ -32,11 +32,13 @@ class AuthViewController: UIViewController {
     }
     
     @objc private func emailButtonTapped() {
-        
+        present(SignUpViewController(), animated: true, completion: nil)
     }
     
     @objc private func loginButtonTapped() {
-        
+        present(LoginViewController(), animated: true, completion: {
+            print("Перешли на экран LoginViewController")
+        })
     }
 }
 
