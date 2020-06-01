@@ -19,6 +19,9 @@ class AuthViewController: UIViewController {
     let googleButton = UIButton(title: "Google", titleColor: .black, backgroundColor: .white, isShadow: true)
     let emailButton = UIButton(title: "Email", titleColor: .white, backgroundColor: .buttonDark())
     let loginButton = UIButton(title: "Login", titleColor: .buttonRed(), backgroundColor: .white, isShadow: true)
+    
+    let signUpVC = SignUpViewController()
+    let loginVC = LoginViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +32,19 @@ class AuthViewController: UIViewController {
         
         emailButton.addTarget(self, action: #selector(emailButtonTapped), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        
+        signUpVC.delegate = self
+        loginVC.delegate = self
     }
     
     @objc private func emailButtonTapped() {
-        present(SignUpViewController(), animated: true, completion: nil)
+        present(signUpVC, animated: true, completion: nil)
+        
+
     }
     
     @objc private func loginButtonTapped() {
-        present(LoginViewController(), animated: true, completion: {
-            print("Перешли на экран LoginViewController")
-        })
+        present(loginVC, animated: true)
     }
 }
 
@@ -67,6 +73,19 @@ extension AuthViewController {
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
     }
+}
+
+extension AuthViewController: AuthNavigationDelegate {
+    func toSignUpVC() {
+        present(signUpVC, animated: true, completion: nil)
+    }
+    
+    func toLoginVC() {
+        // вот это
+        present(loginVC, animated: true, completion: nil)
+    }
+    
+    
 }
 
 

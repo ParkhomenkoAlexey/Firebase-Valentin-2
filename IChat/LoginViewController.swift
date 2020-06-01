@@ -30,6 +30,8 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    weak var delegate: AuthNavigationDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,9 +47,9 @@ class LoginViewController: UIViewController {
         AuthService.shared.login(email: emailTextField.text,
                                  password: passwordTextField.text) { (result) in
                                     switch result {
-                                    case .success:
+                                    case .success(let user):
                                         self.showAlert(with: "Успешно!", and: "Вы авторизованы") {
-                                            self.present(SetupProfileViewController(), animated: true, completion: nil)
+                                            self.present(SetupProfileViewController(currentUser: user), animated: true, completion: nil)
                                         }
                                     case .failure(let error):
                                         self.showAlert(with: "Ошибка!", and: error.localizedDescription)
@@ -56,7 +58,9 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func signUpButtonTapped() {
-
+        dismiss(animated: true) {
+            self.delegate?.toSignUpVC()
+        }
     }
 }
 
@@ -97,7 +101,7 @@ extension LoginViewController {
         view.addSubview(bottomStackView)
         
         NSLayoutConstraint.activate([
-            welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
+            welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         

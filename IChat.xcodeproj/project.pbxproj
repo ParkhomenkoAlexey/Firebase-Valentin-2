@@ -15,6 +15,13 @@
 		F05FE97124765DF900DDEC31 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05FE97024765DF800DDEC31 /* UIViewController + Extension.swift */; };
 		F05FE9782476EA4A00DDEC31 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F05FE9772476EA4A00DDEC31 /* GoogleService-Info.plist */; };
 		F05FE97A2476EEAA00DDEC31 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05FE9792476EEAA00DDEC31 /* AuthService.swift */; };
+		F07BBC6C247C2E9100A43D8F /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07BBC6B247C2E9100A43D8F /* Validators.swift */; };
+		F07BBC6E247C2F1D00A43D8F /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07BBC6D247C2F1D00A43D8F /* AuthError.swift */; };
+		F07BBC71247C3BB500A43D8F /* AuthNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07BBC70247C3BB500A43D8F /* AuthNavigationDelegate.swift */; };
+		F07BBC73247C476900A43D8F /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07BBC72247C476900A43D8F /* FirestoreService.swift */; };
+		F0BFA1EE2480299E0085A2D8 /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BFA1ED2480299E0085A2D8 /* UserError.swift */; };
+		F0BFA1F0248031130085A2D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BFA1EF248031130085A2D8 /* MainViewController.swift */; };
+		F0BFA1F2248035010085A2D8 /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BFA1F1248035010085A2D8 /* MUser.swift */; };
 		F0D5B34023DDA90C006497D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5B33F23DDA90C006497D0 /* AppDelegate.swift */; };
 		F0D5B34223DDA90C006497D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5B34123DDA90C006497D0 /* SceneDelegate.swift */; };
 		F0D5B34423DDA90C006497D0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5B34323DDA90C006497D0 /* AuthViewController.swift */; };
@@ -42,6 +49,13 @@
 		F05FE97024765DF800DDEC31 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		F05FE9772476EA4A00DDEC31 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F05FE9792476EEAA00DDEC31 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		F07BBC6B247C2E9100A43D8F /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		F07BBC6D247C2F1D00A43D8F /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		F07BBC70247C3BB500A43D8F /* AuthNavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationDelegate.swift; sourceTree = "<group>"; };
+		F07BBC72247C476900A43D8F /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		F0BFA1ED2480299E0085A2D8 /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
+		F0BFA1EF248031130085A2D8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F0BFA1F1248035010085A2D8 /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
 		F0D5B33C23DDA90C006497D0 /* IChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0D5B33F23DDA90C006497D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0D5B34123DDA90C006497D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,8 +107,20 @@
 			isa = PBXGroup;
 			children = (
 				F05FE9792476EEAA00DDEC31 /* AuthService.swift */,
+				F07BBC72247C476900A43D8F /* FirestoreService.swift */,
+				F0BFA1F1248035010085A2D8 /* MUser.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		F07BBC6F247C2F2000A43D8F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F07BBC6B247C2E9100A43D8F /* Validators.swift */,
+				F07BBC6D247C2F1D00A43D8F /* AuthError.swift */,
+				F0BFA1ED2480299E0085A2D8 /* UserError.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		F0D5B33323DDA90C006497D0 = {
@@ -124,7 +150,10 @@
 				F0D5B36323DDD84D006497D0 /* SignUpViewController.swift */,
 				F0297F7923DE11E7007914C9 /* LoginViewController.swift */,
 				F0297F7B23DE1DD7007914C9 /* SetupProfileViewController.swift */,
+				F0BFA1EF248031130085A2D8 /* MainViewController.swift */,
+				F07BBC70247C3BB500A43D8F /* AuthNavigationDelegate.swift */,
 				F05FE97B2476EEC800DDEC31 /* Services */,
+				F07BBC6F247C2F2000A43D8F /* Helpers */,
 				F0D5B35E23DDCF5D006497D0 /* Extensions */,
 				F0D5B34823DDA90E006497D0 /* Assets.xcassets */,
 				F0D5B34A23DDA90E006497D0 /* LaunchScreen.storyboard */,
@@ -278,16 +307,23 @@
 				F0D5B36623DDD9E0006497D0 /* OneLineTextField.swift in Sources */,
 				F0D5B36423DDD84D006497D0 /* SignUpViewController.swift in Sources */,
 				F0D5B35823DDB22E006497D0 /* UIColor + Extension.swift in Sources */,
+				F07BBC73247C476900A43D8F /* FirestoreService.swift in Sources */,
+				F07BBC71247C3BB500A43D8F /* AuthNavigationDelegate.swift in Sources */,
 				F05FE97A2476EEAA00DDEC31 /* AuthService.swift in Sources */,
+				F0BFA1EE2480299E0085A2D8 /* UserError.swift in Sources */,
 				F0D5B35623DDB1AA006497D0 /* UIFont + Extension.swift in Sources */,
+				F0BFA1F2248035010085A2D8 /* MUser.swift in Sources */,
+				F07BBC6C247C2E9100A43D8F /* Validators.swift in Sources */,
 				F0297F7C23DE1DD7007914C9 /* SetupProfileViewController.swift in Sources */,
 				F0D5B35A23DDB35E006497D0 /* Label + Extension.swift in Sources */,
 				F0D5B36023DDD0FA006497D0 /* ButtonFormView.swift in Sources */,
 				F0297F8023DE27F4007914C9 /* AddPhotoView.swift in Sources */,
 				F0D5B34423DDA90C006497D0 /* AuthViewController.swift in Sources */,
 				F0D5B35C23DDB3E9006497D0 /* UIImageView + Extension.swift in Sources */,
+				F0BFA1F0248031130085A2D8 /* MainViewController.swift in Sources */,
 				F0297F8223DE2A24007914C9 /* SegmentedControl + Extension.swift in Sources */,
 				F0D5B34023DDA90C006497D0 /* AppDelegate.swift in Sources */,
+				F07BBC6E247C2F1D00A43D8F /* AuthError.swift in Sources */,
 				F0D5B36223DDD46A006497D0 /* StackView + Entension.swift in Sources */,
 				F0D5B34223DDA90C006497D0 /* SceneDelegate.swift in Sources */,
 				F05FE97124765DF900DDEC31 /* UIViewController + Extension.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SetupProfileViewController: UIViewController {
     
@@ -23,11 +24,49 @@ class SetupProfileViewController: UIViewController {
     let sexSegmentedControl = UISegmentedControl(first: "Male", second: "Femail")
     
     let goToChatsButton = UIButton(title: "Go to chats!", titleColor: .white, backgroundColor: .buttonDark(), cornerRadius: 4)
+    
+    let currentUser: User
+    
+    init(currentUser: User) {
+        self.currentUser = currentUser
+        super.init(nibName: nil, bundle: nil)
+        // срабатывает если экран был запущен через код
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+        // срабатывает если экран был запущен через IB
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         setupConstraints()
+        
+        goToChatsButton.addTarget(self, action: #selector(goToChatsButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func goToChatsButtonTapped() {
+        
+        FirestoreService.shared.saveProfileWith(email: currentUser.email,
+                                                uid: currentUser.uid,
+                                                username: fullNameTextField.text,
+                                                avatarImage: fullImageView.circleImageView.image,
+                                                description: aboutMeTextField.text,
+                                                sex: sexSegmentedControl.titleForSegment(at: sexSegmentedControl.selectedSegmentIndex)) { (result) in
+                                                    switch result {
+                                                    case .success(let muser):
+                                                        self.showAlert(with: "Успешно!", and: "Данные сохранены") {
+                                                            let mainVC = MainViewController()
+                                                            mainVC.muser = muser
+                                                            mainVC.modalPresentationStyle = .fullScreen
+                                                            self.present(mainVC, animated: true, completion: nil)
+                                                        }
+                                                    case .failure(let error):
+                                                        self.showAlert(with: "Ошибка!", and: error.localizedDescription)
+                                                    }
+        }
     }
 }
 
@@ -75,27 +114,5 @@ extension SetupProfileViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
-    }
-}
-
-// MARK: - SwiftUI
-import SwiftUI
-
-struct SetupProfileVCProvider: PreviewProvider {
-    static var previews: some View {
-        ContainerView().edgesIgnoringSafeArea(.all)
-    }
-    
-    struct ContainerView: UIViewControllerRepresentable {
-        
-        let setupProfileVC = SetupProfileViewController()
-        
-        func makeUIViewController(context: UIViewControllerRepresentableContext<SetupProfileVCProvider.ContainerView>) -> SetupProfileViewController {
-            return setupProfileVC
-        }
-        
-        func updateUIViewController(_ uiViewController: SetupProfileVCProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<SetupProfileVCProvider.ContainerView>) {
-            
-        }
     }
 }

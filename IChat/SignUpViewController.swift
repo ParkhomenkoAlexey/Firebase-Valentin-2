@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignUpViewController: UIViewController {
     
@@ -23,6 +24,8 @@ class SignUpViewController: UIViewController {
     
     let authService = AuthService()
     
+    weak var delegate: AuthNavigationDelegate?
+    
     let signUpButton = UIButton(title: "Sign Up", titleColor: .white, backgroundColor: .buttonDark(), cornerRadius: 4)
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
@@ -34,7 +37,6 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
         setupConstraints()
         
@@ -47,9 +49,10 @@ class SignUpViewController: UIViewController {
                                     password: passwordTextField.text,
                                     confirmPassword: confirmPasswordTextField.text) { (result) in
                                         switch result {
-                                        case .success:
+                                        case .success(let user):
                                             self.showAlert(with: "Успешно!", and: "Вы зарегистрированны!") {
-                                                self.present(SetupProfileViewController(), animated: true, completion: nil)
+                                                
+                                                self.present(SetupProfileViewController(currentUser: user), animated: true, completion: nil)
                                             }
                                         case .failure(let error):
                                             self.showAlert(with: "Ошибка!", and: error.localizedDescription)
@@ -58,7 +61,9 @@ class SignUpViewController: UIViewController {
     }
     
     @objc private func loginButtonTapped() {
-    
+        dismiss(animated: true) {
+            self.delegate?.toLoginVC()
+        }
     }
 }
 
